@@ -1,0 +1,40 @@
+{
+  "name": "koaboiler",
+  "version": "1.0.0",
+  "description": "koa boilerplate for production ready",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llambda/koaboiler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llambda/koaboiler/issues"
+  },
+  "homepage": "https://github.com/llambda/koaboiler#readme",
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "koa": "^2.0.0-alpha.3",
+    "koa-adapter": "0.0.3",
+    "koa-bodyparser": "^2.0.1",
+    "koa-compress": "^1.0.8",
+    "koa-conditional-get": "^1.0.3",
+    "koa-etag": "^2.1.0",
+    "koa-favicon": "^1.2.0",
+    "koa-helmet": "^1.0.0",
+    "koa-morgan": "^1.0.1",
+    "koa-response-time": "^1.0.2",
+    "koa-router": "^5.3.0",
+    "koa-serve-static": "^1.0.0",
+    "koa-session": "^3.3.1",
+    "pem": "^1.8.1",
+    "socket.io": "^1.4.4",
+    "socketio-sticky-session": "^0.4.1",
+    "spdy": "^3.1.0"
+  }
+}
