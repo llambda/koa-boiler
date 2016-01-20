@@ -7,7 +7,7 @@ const serveStatic = require('koa-serve-static')('public');
 const conditional = require('koa-conditional-get');
 const bodyParser = require('koa-bodyparser')();
 const compress = require('koa-compress')();
-const morgan = require('koa-morgan')();
+const Morgan = require('koa-morgan');
 const favicon = require('koa-favicon');
 const session = require('koa-session');
 const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
@@ -18,11 +18,13 @@ const Koa = require('koa');
 
 const app = module.exports = new Koa();
 
+const logger = Morgan('combined');
+
 app.use(adapt(favicon(__dirname + '/public/favicon.ico')));
 app.use(adapt(require('koa-response-time')()));
 app.use(adapt(conditional()));
 app.use(adapt(etag()));
-app.use(morgan);
+app.use(logger);
 
 app.use(adapt(compress));
 app.keys = 'put a random string here';
