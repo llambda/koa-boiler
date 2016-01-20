@@ -27,10 +27,10 @@ app.use(adapt(etag()));
 app.use(logger);
 
 app.use(adapt(compress));
-app.keys = 'put a random string here';
+app.keys = ['some secret hurr'];
 
 app.use(adapt(session({
-    maxAge: 9999999999000
+    maxAge: 24 * 60 * 60 * 1000 // One Day
 }, app)));
 
 app.use(adapt(bodyParser));
