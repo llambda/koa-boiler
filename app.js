@@ -70,6 +70,12 @@ router.get('/api/example', function*(next) {
     this.response.body = "Simple Async 3-second Delayed Example!";
 })
 
+router.get('/api/error', function*(next) {
+
+    // Example showing error throwing
+    throw new Error('Hurr durr!');
+})
+
 app.use(adapt(router.routes()));
 app.use(adapt(router.allowedMethods()));
 app.use(adapt(serveStatic));
