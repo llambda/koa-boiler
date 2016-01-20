@@ -12,6 +12,7 @@ const etag = require('koa-etag');
 const morgan = require('koa-morgan')();
 const bodyParser = require('koa-bodyparser')();
 const serveStatic = require('koa-serve-static')('public');
+const cluster = require('cluster');
 
 app.use(adapt(favicon(__dirname + '/public/favicon.ico')));
 app.use(adapt(require('koa-response-time')()));
@@ -54,7 +55,7 @@ const router = require('koa-router')();
 
 router.get('/', function *(next) {
 	this.status = 200;
-	this.body = 'Hello world!';
+	this.body = 'Hello world from worker ' + (cluster.worker ? cluster.worker.id : '') + '!';
 })
 
 router.get('/api/example', function *(next) {
