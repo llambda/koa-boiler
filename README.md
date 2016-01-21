@@ -6,7 +6,7 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 * IP pinning via socketio-sticky-session, optionally compatible with reverse proxies
 * Etags and conditional gets
 * Gzip compression
-* Cookie based sessions
+* Signed, cookie-based sessions
 * Request logging (morgan)
 * Static file serving
 * Favicon middleware
