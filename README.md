@@ -1,4 +1,4 @@
-# koaboiler
+# koa-boiler
 Koa "boilerplate" for a production ready app, demonstrating the following features:
 
 * Socket.io
