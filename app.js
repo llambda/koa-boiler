@@ -120,7 +120,7 @@ router.get('/marko', function *() {
         })(),
     };
 
-    this.body = marko.load('./view/ip.marko').stream(data);
+    this.body = marko.load('./view/ip.marko.html').stream(data);
     this.type = 'text/html';
 });
 
