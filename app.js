@@ -40,6 +40,9 @@ app.use(adapt(function*(next) {
     try {
         yield next;
     } catch (err) {
+        if (err == null) {
+            err = {};
+        }
         // some errors will have .status
         // however this is not a guarantee
         this.status = err.status || 500;
@@ -75,6 +78,24 @@ router.get('/api/error', function*(next) {
     // Example showing error throwing
     throw new Error('Hurr durr!');
 })
+
+const render = require('koa-ejs');
+const path = require('path');
+
+render(app, {
+  root: path.join(__dirname, 'view'),
+  layout: 'template',
+  viewExt: 'html',
+  cache: false,
+  debug: true
+});
+
+
+router.get('/myip', function*(next) {
+    this.state.ip = this.ip;
+    yield this.render('myip');
+});
+
 
 app.use(adapt(router.routes()));
 app.use(adapt(router.allowedMethods()));
