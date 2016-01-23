@@ -15,3 +15,4 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 * Routing
 * Example async route
 * ejs templates
+* http://markojs.com/ templates
