@@ -106,9 +106,18 @@ router.get('/myip', function*(next) {
 const marko = require('marko');
 
 router.get('/marko', function *() {
+    let ip = this.ip;
 
     let data = {
-        ip: this.ip
+        ip: ip,
+        ip2: Promise.coroutine(function *() {
+            yield Promise.delay(3000);
+            return '3 seconds';
+        })(),
+        ip3: Promise.coroutine(function *() {
+            yield Promise.delay(5000);
+            return '5 seconds';
+        })(),
     };
 
     this.body = marko.load('./view/ip.marko').stream(data);
