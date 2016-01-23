@@ -102,6 +102,7 @@ router.get('/myip', function*(next) {
 });
 
 // marko example
+// http://psteeleidem.com/marko-versus-dust/
 
 const marko = require('marko');
 
