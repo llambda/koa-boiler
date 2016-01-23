@@ -3,8 +3,8 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 
 * Socket.io
 * Clustering
-* IP pinning via socketio-sticky-session, optionally compatible with reverse proxies
-* Etags and conditional gets
+* IP pinning via socketio-sticky-session which works with reverse proxies too
+* ETags and conditional gets
 * Gzip compression
 * Signed, cookie-based sessions
 * Request logging (morgan)
@@ -14,3 +14,4 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 * Dropping root privileges after acquiring port
 * Routing
 * Example async route
+* ejs templates
