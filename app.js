@@ -10,7 +10,8 @@ const compress = require('koa-compress')();
 const Morgan = require('koa-morgan');
 const favicon = require('koa-favicon');
 const session = require('koa-session');
-const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
+// const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
+const adapt = require('koa-adapter-bluebird'); // uses bluebird-co for performance
 const helmet = require('koa-helmet');
 const etag = require('koa-etag');
 

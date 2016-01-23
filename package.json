@@ -21,6 +21,7 @@
     "bluebird": "^3.1.1",
     "koa": "^2.0.0-alpha.3",
     "koa-adapter": "0.0.3",
+    "koa-adapter-bluebird": "0.0.1",
     "koa-bodyparser": "^2.0.1",
     "koa-compress": "^1.0.8",
     "koa-conditional-get": "^1.0.3",
