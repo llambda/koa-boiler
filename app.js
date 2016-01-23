@@ -6,7 +6,7 @@ const cluster = require('cluster');
 const serveStatic = require('koa-serve-static')('public');
 const conditional = require('koa-conditional-get');
 const bodyParser = require('koa-bodyparser')();
-const compress = require('koa-compress')();
+const Compress = require('koa-compress');
 const Morgan = require('koa-morgan');
 const favicon = require('koa-favicon');
 const session = require('koa-session');
@@ -27,7 +27,9 @@ app.use(adapt(conditional()));
 app.use(adapt(etag()));
 app.use(logger);
 
-app.use(adapt(compress));
+app.use(adapt(Compress({
+    flush: require('zlib').Z_SYNC_FLUSH
+})));
 app.keys = ['some secret hurr'];
 
 app.use(adapt(session({
@@ -80,6 +82,8 @@ router.get('/api/error', function*(next) {
     throw new Error('Hurr durr!');
 })
 
+
+// ejs example
 const render = require('koa-ejs');
 const path = require('path');
 
@@ -95,6 +99,20 @@ render(app, {
 router.get('/myip', function*(next) {
     this.state.ip = this.ip;
     yield this.render('myip');
+});
+
+// marko example
+
+const marko = require('marko');
+
+router.get('/marko', function *() {
+
+    let data = {
+        ip: this.ip
+    };
+
+    this.body = marko.load('./view/ip.marko').stream(data);
+    this.type = 'text/html';
 });
 
 
