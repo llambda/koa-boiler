@@ -122,7 +122,7 @@ router.get('/marko', function *() {
     };
 
     this.body = marko.load(require.resolve('./view/ip.marko.html')).stream(data);
-    this.type = 'text/html';
+    this.type = 'text/html; charset=utf-8';
 });
 
 
