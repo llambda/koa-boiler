@@ -21,7 +21,7 @@ const app = module.exports = new Koa();
 
 const logger = Morgan('combined');
 
-app.use(adapt(favicon(__dirname + '/public/favicon.ico')));
+app.use(adapt(favicon(require.resolve('./public/favicon.ico'))));
 app.use(adapt(require('koa-response-time')()));
 app.use(adapt(conditional()));
 app.use(adapt(etag()));
@@ -121,7 +121,7 @@ router.get('/marko', function *() {
         })(),
     };
 
-    this.body = marko.load('./view/ip.marko.html').stream(data);
+    this.body = marko.load(require.resolve('./view/ip.marko.html')).stream(data);
     this.type = 'text/html';
 });
 
