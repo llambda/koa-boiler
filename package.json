@@ -38,6 +38,6 @@
     "pem": "^1.8.1",
     "socket.io": "^1.4.4",
     "socketio-sticky-session": "^0.4.1",
-    "spdy": "^3.1.0"
+    "spdy": "^3.2.0"
   }
 }
