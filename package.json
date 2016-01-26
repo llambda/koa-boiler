@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/llambda/koaboiler#readme",
   "dependencies": {
-    "bluebird": "^3.1.1",
+    "bluebird": "^3.1.4",
     "koa": "^2.0.0-alpha.3",
     "koa-adapter": "0.0.3",
     "koa-adapter-bluebird": "0.0.1",
@@ -31,7 +31,7 @@
     "koa-helmet": "^1.0.0",
     "koa-morgan": "^1.0.1",
     "koa-response-time": "^1.0.2",
-    "koa-router": "^5.3.0",
+    "koa-router": "^7.0.1",
     "koa-serve-static": "^1.0.0",
     "koa-session": "^3.3.1",
     "marko": "^2.8.2",

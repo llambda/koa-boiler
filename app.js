@@ -65,19 +65,20 @@ app.use(adapt(function*(next) {
 
 const router = require('koa-router')();
 
-router.get('/', function*(next) {
-    this.status = 200;
-    this.body = 'Hello world from worker ' + (cluster.worker ? cluster.worker.id : '') + '!';
+router.get('/', (ctx, next) => {
+    ctx.status = 200;
+    ctx.body = 'Hello world from worker ' + (cluster.worker ? cluster.worker.id : '') + '!';
 })
 
-router.get('/api/example', function*(next) {
-    yield Promise.delay(3000);
+router.get('/api/example', (ctx, next) => {
 
-    this.response.body = "Simple Async 3-second Delayed Example!";
+    return Promise.coroutine(function *() {
+        yield Promise.delay(3000);
+        ctx.response.body = "Simple Async 3-second Delayed Example!";
+    })();
 })
 
-router.get('/api/error', function*(next) {
-
+router.get('/api/error', (ctx, next) => {
     // Example showing error throwing
     throw new Error('Hurr durr!');
 })
@@ -95,19 +96,22 @@ render(app, {
   debug: true
 });
 
+// ejs render
+router.get('/myip', (ctx, next) => {
 
-router.get('/myip', function*(next) {
-    this.state.ip = this.ip;
-    yield this.render('myip');
+    return Promise.coroutine(function *() {
+        ctx.state.ip = ctx.ip;
+        yield ctx.render('myip');
+    })();
+
 });
 
-// marko example
+// marko render
 // http://psteeleidem.com/marko-versus-dust/
-
 const marko = require('marko');
 
-router.get('/marko', function *() {
-    let ip = this.ip;
+router.get('/marko', (ctx, next) => {
+    let ip = ctx.ip;
 
     let data = {
         ip: ip,
@@ -121,11 +125,12 @@ router.get('/marko', function *() {
         })(),
     };
 
-    this.body = marko.load(require.resolve('./view/ip.marko.html')).stream(data);
-    this.type = 'text/html; charset=utf-8';
+    // When body is a stream, Koa automatically streams it to the client.
+    ctx.body = marko.load(require.resolve('./view/ip.marko.html')).stream(data);
+    ctx.type = 'text/html; charset=utf-8';
 });
 
 
-app.use(adapt(router.routes()));
-app.use(adapt(router.allowedMethods()));
-app.use(adapt(serveStatic));
+app.use(router.routes());
+app.use(router.allowedMethods());
+app.use(serveStatic);
