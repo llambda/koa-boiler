@@ -16,3 +16,4 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 * Example async route
 * ejs templates
 * http://markojs.com/ templates (async and streaming!)
+* Both Koa 1.0 and 2.0 style middleware, and use of koa-adapter to convert to 2.0 
