@@ -1,9 +1,10 @@
 'use strict';
 const Promise = require('bluebird');
+const co = Promise.coroutine;
 const cluster = require('cluster');
 
 // middleware
-const serveStatic = require('koa-serve-static')('public');
+const serveStatic = require('koa-static')('public');
 const conditional = require('koa-conditional-get');
 const bodyParser = require('koa-bodyparser')();
 const Compress = require('koa-compress');
@@ -39,29 +40,31 @@ app.use(adapt(session({
 app.use(adapt(bodyParser));
 
 // Example error handler to JSON stringify errors
-app.use(adapt(function*(next) {
-    try {
-        yield next;
-    } catch (err) {
-        if (err == null) {
-            err = {};
-        }
-        // some errors will have .status
-        // however this is not a guarantee
-        this.status = err.status || 500;
-        this.type = 'application/json';
-        this.body = JSON.stringify({
-            success: false,
-            message: err.stack
-        })
+app.use( (ctx, next) => {
+    return co(function *() {
+        try {
+            yield next();
+        } catch (err) {
+            if (err == null) {
+                err = new Error('Null or undefined error');
+            }
+            // some errors will have .status
+            // however this is not a guarantee
+            this.status = err.status || 500;
+            this.type = 'application/json';
+            this.body = JSON.stringify({
+                success: false,
+                message: err.stack
+            })
 
-        // since we handled this manually we'll
-        // want to delegate to the regular app
-        // level error handling as well so that
-        // centralized still functions correctly.
-        this.app.emit('error', err, this);
-    }
-}));
+            // since we handled this manually we'll
+            // want to delegate to the regular app
+            // level error handling as well so that
+            // centralized still functions correctly.
+            this.app.emit('error', err, this);
+        }
+    })();
+});
 
 const router = require('koa-router')();
 
@@ -72,7 +75,7 @@ router.get('/', (ctx, next) => {
 
 router.get('/api/example', (ctx, next) => {
 
-    return Promise.coroutine(function *() {
+    return co(function *() {
         yield Promise.delay(3000);
         ctx.response.body = "Simple Async 3-second Delayed Example!";
     })();
@@ -82,7 +85,6 @@ router.get('/api/error', (ctx, next) => {
     // Example showing error throwing
     throw new Error('Hurr durr!');
 })
-
 
 // ejs example
 const render = require('koa-ejs');
@@ -99,7 +101,7 @@ render(app, {
 // ejs render
 router.get('/myip', (ctx, next) => {
 
-    return Promise.coroutine(function *() {
+    return co(function *() {
         ctx.state.ip = ctx.ip;
         yield ctx.render('myip');
     })();
@@ -115,11 +117,11 @@ router.get('/marko', (ctx, next) => {
 
     let data = {
         ip: ip,
-        ip2: Promise.coroutine(function *() {
+        ip2: co(function *() {
             yield Promise.delay(3000);
             return '3 seconds';
         })(),
-        ip3: Promise.coroutine(function *() {
+        ip3: co(function *() {
             yield Promise.delay(5000);
             return '5 seconds';
         })(),
@@ -133,4 +135,4 @@ router.get('/marko', (ctx, next) => {
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(serveStatic);
+app.use(adapt(serveStatic));
