@@ -99,14 +99,11 @@ render(app, {
 });
 
 // ejs render
-router.get('/myip', (ctx, next) => {
-
-    return co(function *() {
+router.get('/myip', (ctx, next) => co(function *() {
         ctx.state.ip = ctx.ip;
         yield ctx.render('myip');
-    })();
-
-});
+    })()
+);
 
 // marko render
 // http://psteeleidem.com/marko-versus-dust/
