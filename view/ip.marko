@@ -1,0 +1,10 @@
+- Hello ${data.ip}!
+<br/>
+<br/>
+- Wait 3 and 5 seconds for the additional fragments to load asynchronously...
+<async-fragment data-provider=data.ip2 var="ip">
+    <div>Async fragment 1: ${ip}</div>
+</async-fragment>
+<async-fragment data-provider=data.ip3 var="ip">
+    <div>Async fragment 2: ${ip}</div>
+</async-fragment>
