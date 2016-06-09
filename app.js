@@ -50,9 +50,9 @@ app.use( (ctx, next) => {
             }
             // some errors will have .status
             // however this is not a guarantee
-            this.status = err.status || 500;
-            this.type = 'application/json';
-            this.body = JSON.stringify({
+            ctx.status = err.status || 500;
+            ctx.type = 'application/json';
+            ctx.body = JSON.stringify({
                 success: false,
                 message: err.stack
             })
@@ -61,7 +61,7 @@ app.use( (ctx, next) => {
             // want to delegate to the regular app
             // level error handling as well so that
             // centralized still functions correctly.
-            this.app.emit('error', err, this);
+            ctx.app.emit('error', err, this);
         }
     })();
 });
