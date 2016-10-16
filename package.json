@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/llambda/koaboiler#readme",
   "dependencies": {
-    "bluebird": "^3.4.0",
-    "koa": "^2.0.0-alpha.3",
+    "bluebird": "^3.4.6",
+    "koa": "^2.0.0-alpha.7",
     "koa-adapter": "0.0.3",
     "koa-adapter-bluebird": "0.0.1",
     "koa-bodyparser": "^2.2.0",
@@ -28,16 +28,16 @@
     "koa-ejs": "^3.0.0",
     "koa-etag": "^2.1.1",
     "koa-favicon": "^1.2.1",
-    "koa-helmet": "^1.0.0",
+    "koa-helmet": "^2.0.0",
     "koa-morgan": "^1.0.1",
     "koa-response-time": "^1.0.2",
     "koa-router": "^7.0.1",
-    "koa-session": "^3.3.1",
+    "koa-session": "^3.4.0",
     "koa-static": "^2.0.0",
-    "marko": "^3.4.7",
+    "marko": "^3.11.7",
     "pem": "^1.8.3",
-    "socket.io": "^1.4.6",
+    "socket.io": "^1.5.0",
     "socketio-sticky-session": "^0.4.2",
-    "spdy": "^3.3.3"
+    "spdy": "^3.4.4"
   }
 }
