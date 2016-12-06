@@ -34,9 +34,9 @@
     "koa-router": "^7.0.1",
     "koa-session": "^3.4.0",
     "koa-static": "^2.0.0",
-    "marko": "^3.11.7",
-    "pem": "^1.8.3",
-    "socket.io": "^1.5.0",
+    "marko": "^3.13.0",
+    "pem": "^1.9.4",
+    "socket.io": "^1.7.1",
     "socketio-sticky-session": "git://github.com/wzrdtales/socket-io-sticky-session.git#2d0367fd7c80c727923f33d2ac11e34d0267ae4c",
     "spdy": "^3.4.4"
   }
