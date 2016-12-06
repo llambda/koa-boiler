@@ -37,7 +37,7 @@
     "marko": "^3.11.7",
     "pem": "^1.8.3",
     "socket.io": "^1.5.0",
-    "socketio-sticky-session": "^0.4.2",
+    "socketio-sticky-session": "git://github.com/wzrdtales/socket-io-sticky-session.git#2d0367fd7c80c727923f33d2ac11e34d0267ae4c",
     "spdy": "^3.4.4"
   }
 }
