@@ -39,39 +39,64 @@ app.use(adapt(session({
 
 app.use(adapt(bodyParser));
 
-// Example error handler to JSON stringify errors
-app.use( (ctx, next) => {
-    return co(function *() {
-        try {
-            yield next();
-        } catch (err) {
-            if (err == null) {
-                err = new Error('Null or undefined error');
-            }
-            // some errors will have .status
-            // however this is not a guarantee
-            ctx.status = err.status || 500;
-            ctx.type = 'application/json';
-            ctx.body = JSON.stringify({
-                success: false,
-                message: err.stack
-            })
-
-            // since we handled this manually we'll
-            // want to delegate to the regular app
-            // level error handling as well so that
-            // centralized still functions correctly.
-            ctx.app.emit('error', err, this);
+class NullOrUndefinedError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+        this.message = message;
+        if (typeof Error.captureStackTrace === 'function') {
+            Error.captureStackTrace(this, this.constructor);
+        } else {
+            this.stack = (new Error(message)).stack;
         }
-    })();
-});
+        if (!this.message) {
+            this.message = 'Null or undefined error';
+        }
+    }
+};
+
+(function () {
+  // Example error handler to JSON stringify errors
+
+  let errorCount = 0; // closure to keep this variable private
+
+  app.use( (ctx, next) => {
+      return co(function *() {
+          try {
+              yield next();
+          } catch (err) {
+              if (err == null) {
+                  err = new NullOrUndefinedError();
+              }
+              // some errors will have .status
+              // however this is not a guarantee
+              ctx.status = err.status || 500;
+              ctx.type = 'application/json';
+              ctx.body = JSON.stringify({
+                  errors: [{
+                    id: errorCount++,
+                    status: ctx.status,
+                    title: err.message,
+                    detail: err.stack
+                  }]
+              })
+
+              // since we handled this manually we'll
+              // want to delegate to the regular app
+              // level error handling as well so that
+              // centralized still functions correctly.
+              ctx.app.emit('error', err, this);
+          }
+      })();
+  });
+})();
 
 const router = require('koa-router')();
 
 router.get('/', (ctx, next) => {
     ctx.status = 200;
     ctx.body = 'Hello world from worker ' + (cluster.worker ? cluster.worker.id : '') + '!';
-})
+});
 
 router.get('/api/example', (ctx, next) => {
 
@@ -79,12 +104,17 @@ router.get('/api/example', (ctx, next) => {
         yield Promise.delay(3000);
         ctx.response.body = "Simple Async 3-second Delayed Example!";
     })();
-})
+});
 
 router.get('/api/error', (ctx, next) => {
     // Example showing error throwing
     throw new Error('Hurr durr!');
-})
+});
+
+router.get('/api/nullerror', (ctx, next) => {
+    // Example showing error throwing
+    throw null;
+});
 
 // ejs example
 const render = require('koa-ejs');
