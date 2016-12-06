@@ -644,7 +644,7 @@ lodash.reduce@4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.reduce/-/lodash.reduce-4.5.0.tgz#af7d2ec621062441e77d5bf408a1e071ef86691c"
 
-marko@^3.11.7:
+marko@^3.13.0:
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/marko/-/marko-3.13.0.tgz#8b172f879205fb8fbc8024cec5a5ce433c83ab7a"
   dependencies:
@@ -804,7 +804,7 @@ path-to-regexp@^1.1.1:
   dependencies:
     isarray "0.0.1"
 
-pem@^1.8.3:
+pem@^1.9.4:
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/pem/-/pem-1.9.4.tgz#63e89c49c17629610e978e87514e5cdbf498374f"
   dependencies:
@@ -982,7 +982,7 @@ socket.io-parser@2.3.1:
     isarray "0.0.1"
     json3 "3.3.2"
 
-socket.io@^1.5.0:
+socket.io@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-1.7.1.tgz#a34d763fd22cd975643c2f0c7c5f14ba6da80aaf"
   dependencies:
