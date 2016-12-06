@@ -1,12 +1,10 @@
 'use strict';
-console.log('Starting TLS server at ' + (new Date).toISOString());
-process.on('exit', function() {
-    console.log('Process exit at ' + (new Date).toISOString());
-});
+const cluster = require('cluster');
+console.log('Starting TLS server ' + (cluster.worker ? cluster.worker.id : '') + ' at ' + (new Date).toISOString());
+process.on('exit', () => console.log('Process exit at ' + (new Date).toISOString()));
 
 const Promise = require('bluebird');
 const sticky = require('socketio-sticky-session');
-const cluster = require('cluster');
 const pem = Promise.promisifyAll(require('pem'));
 const app = require('./app');
 const config = require('./config.json');
