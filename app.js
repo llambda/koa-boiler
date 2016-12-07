@@ -129,25 +129,29 @@ router.get('/myip', (ctx, next) => co(function *() {
 // http://psteeleidem.com/marko-versus-dust/
 const marko = require('marko');
 
-router.get('/marko', (ctx, next) => {
-    let ip = ctx.ip;
+(() => {
+    const ipMarkoTemplate = marko.load(require.resolve('./view/ip.marko.html'), {writeToDisk: false});
 
-    let data = {
-        ip: ip,
-        ip2: co(function *() {
-            yield Promise.delay(3000);
-            return '3 seconds';
-        })(),
-        ip3: co(function *() {
-            yield Promise.delay(5000);
-            return '5 seconds';
-        })(),
-    };
+    router.get('/marko', (ctx, next) => {
+        let ip = ctx.ip;
 
-    // When body is a stream, Koa automatically streams it to the client.
-    ctx.body = marko.load(require.resolve('./view/ip.marko.html')).stream(data);
-    ctx.type = 'text/html; charset=utf-8';
-});
+        let data = {
+            ip: ip,
+            ip2: co(function *() {
+                yield Promise.delay(3000);
+                return '3 seconds';
+            })(),
+            ip3: co(function *() {
+                yield Promise.delay(5000);
+                return '5 seconds';
+            })(),
+        };
+
+        // When body is a stream, Koa automatically streams it to the client.
+        ctx.body = ipMarkoTemplate.stream(data);
+        ctx.type = 'text/html; charset=utf-8';
+    });
+})();
 
 
 app.use(router.routes());
