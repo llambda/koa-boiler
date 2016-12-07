@@ -85,7 +85,29 @@ const router = require('koa-router')();
 
 router.get('/', (ctx, next) => {
     ctx.status = 200;
-    ctx.body = 'Hello world from worker ' + (cluster.worker ? cluster.worker.id : '') + '!';
+    const workerId = (cluster.worker ? cluster.worker.id : '');
+    ctx.body = `<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello from worker ${workerId}!</title>
+</head>
+
+<body>
+    <p>Hello ${ctx.ip} from worker ${workerId}!</p>
+    <p>If using Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a></p>
+    <div>Node versions:
+    <pre>${JSON.stringify(process.versions, null, 4)}</pre>
+    </div>   
+    <div>
+        <a href="/api/example">3 second async delayed load example</a><br>
+        <a href="/api/error">Example showing error throwing</a><br>
+        <a href="/api/nullerror">Example showing null error throwing</a><br>
+        <a href="/myip">ejs rendering</a><br>
+        <a href="/marko">marko async rendering</a><br>
+        <a href="/myipes6">es6 template string rendering</a><br>
+    </div>     
+</body>
+</html>`;
 });
 
 router.get('/api/example', (ctx, next) => {
@@ -152,6 +174,24 @@ const marko = require('marko');
         ctx.type = 'text/html; charset=utf-8';
     });
 })();
+
+// ES6 template
+router.get('/myipes6', (ctx, next) => co(function *() {
+        ctx.state.ip = ctx.ip;        
+        ctx.body = `<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello ${ctx.ip}!</title>
+</head>
+
+<body>
+    <p>Hello ${ctx.ip}!</p>
+</body>
+
+</html>`;
+})());
+
 
 
 app.use(router.routes());
