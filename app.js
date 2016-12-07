@@ -28,9 +28,9 @@ app.use(adapt(conditional()));
 app.use(adapt(etag()));
 app.use(logger);
 
-app.use(adapt(Compress({
+app.use(Compress({
     flush: require('zlib').Z_SYNC_FLUSH
-})));
+}));
 app.keys = ['some secret hurr'];
 
 app.use(adapt(session({
