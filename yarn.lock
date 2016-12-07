@@ -532,9 +532,9 @@ koa-ejs@^3.0.0:
     copy-to "~2.0.1"
     ejs "^2.3.4"
 
-koa-etag@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/koa-etag/-/koa-etag-2.1.1.tgz#ab79894e027d0f09b1087a780e6babcca33af065"
+koa-etag@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/koa-etag/-/koa-etag-3.0.0.tgz#9ef7382ddd5a82ab0deb153415c915836f771d3f"
   dependencies:
     etag "^1.3.0"
     mz "^2.1.0"
