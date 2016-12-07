@@ -23,7 +23,7 @@
     "koa-adapter": "0.0.3",
     "koa-adapter-bluebird": "0.0.1",
     "koa-bodyparser": "^3.2.0",
-    "koa-compress": "^1.0.9",
+    "koa-compress": "^2.0.0",
     "koa-conditional-get": "^1.0.3",
     "koa-ejs": "^3.0.0",
     "koa-etag": "^2.1.1",
