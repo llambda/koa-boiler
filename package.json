@@ -27,7 +27,7 @@
     "koa-conditional-get": "^1.0.3",
     "koa-ejs": "^3.0.0",
     "koa-etag": "^2.1.1",
-    "koa-favicon": "^1.2.1",
+    "koa-favicon": "^2.0.0",
     "koa-helmet": "^2.0.0",
     "koa-morgan": "^1.0.1",
     "koa-response-time": "^1.0.2",
