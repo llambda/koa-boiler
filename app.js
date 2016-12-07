@@ -164,4 +164,4 @@ router.get('/marko', (ctx, next) => {
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(adapt(serveStatic));
+app.use(serveStatic);

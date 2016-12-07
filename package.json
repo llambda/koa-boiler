@@ -33,7 +33,7 @@
     "koa-response-time": "^2.0.0",
     "koa-router": "^7.0.1",
     "koa-session": "^3.4.0",
-    "koa-static": "^2.0.0",
+    "koa-static": "^3.0.0",
     "marko": "^3.13.0",
     "pem": "^1.9.4",
     "socket.io": "^1.7.1",

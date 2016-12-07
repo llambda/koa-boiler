@@ -575,9 +575,9 @@ koa-router@^7.0.1:
     methods "^1.0.1"
     path-to-regexp "^1.1.1"
 
-koa-send@~3.1.0:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/koa-send/-/koa-send-3.1.1.tgz#ef0af0f9a531ec817e88056b52b8e32d2e0ba91a"
+koa-send@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/koa-send/-/koa-send-3.2.0.tgz#a4063c2631b7ebed9f9fc2a77568799ba606449b"
   dependencies:
     co "^4.6.0"
     debug "*"
@@ -591,12 +591,12 @@ koa-session@^3.4.0:
     debug "^2.2.0"
     deep-equal "^1.0.0"
 
-koa-static@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/koa-static/-/koa-static-2.0.0.tgz#2693482e1a4c0219e6d926be1703a2658b754f26"
+koa-static@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/koa-static/-/koa-static-3.0.0.tgz#40442233d2c0b35c225e450199c10bf8a539e416"
   dependencies:
     debug "*"
-    koa-send "~3.1.0"
+    koa-send "^3.2.0"
 
 koa@^2.0.0-alpha.7:
   version "2.0.0"
