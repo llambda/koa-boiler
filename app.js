@@ -23,7 +23,7 @@ const app = module.exports = new Koa();
 const logger = Morgan('combined');
 
 app.use(favicon(require.resolve('./public/favicon.ico')));
-app.use(adapt(require('koa-response-time')()));
+app.use(require('koa-response-time')());
 app.use(adapt(conditional()));
 app.use(adapt(etag()));
 app.use(logger);
