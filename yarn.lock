@@ -190,7 +190,7 @@ cookies@~0.6.1:
     depd "~1.1.0"
     keygrip "~1.0.1"
 
-copy-to@^2.0.1, copy-to@~2.0.1:
+copy-to@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/copy-to/-/copy-to-2.0.1.tgz#2680fbb8068a48d08656b6098092bdafc906f4a5"
 
@@ -492,12 +492,11 @@ koa-adapter@0.0.3:
     co "^4.6.0"
     is-generator-function "^1.0.3"
 
-koa-bodyparser@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-2.3.0.tgz#236ed90a16f562e79cade2b958f67c848824e818"
+koa-bodyparser@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-3.2.0.tgz#b916de17e2039fe82650481973d7c294f10b5719"
   dependencies:
     co-body "^4.2.0"
-    copy-to "^2.0.1"
 
 koa-compose@^3.0.0:
   version "3.2.1"
