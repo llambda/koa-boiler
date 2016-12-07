@@ -5,11 +5,11 @@ const cluster = require('cluster');
 
 // middleware
 const serveStatic = require('koa-static')('public');
-const conditional = require('koa-conditional-get');
+const Conditional = require('koa-conditional-get');
 const BodyParser = require('koa-bodyparser');
 const Compress = require('koa-compress');
 const Morgan = require('koa-morgan');
-const favicon = require('koa-favicon');
+const Favicon = require('koa-favicon');
 const session = require('koa-session');
 // const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
 const adapt = require('koa-adapter-bluebird'); // uses bluebird-co for performance
@@ -22,9 +22,9 @@ const app = module.exports = new Koa();
 
 const logger = Morgan('combined');
 
-app.use(favicon(require.resolve('./public/favicon.ico')));
+app.use(Favicon(require.resolve('./public/favicon.ico')));
 app.use(require('koa-response-time')());
-app.use(adapt(conditional()));
+app.use(Conditional());
 app.use(adapt(etag()));
 app.use(logger);
 
