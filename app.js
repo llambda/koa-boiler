@@ -145,7 +145,7 @@ router.get('/marko', (ctx, next) => {
     };
 
     // When body is a stream, Koa automatically streams it to the client.
-    ctx.body = marko.load(require.resolve('./view/ip.marko')).stream(data);
+    ctx.body = marko.load(require.resolve('./view/ip.marko.html')).stream(data);
     ctx.type = 'text/html; charset=utf-8';
 });
 

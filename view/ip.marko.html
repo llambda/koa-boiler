@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello ${data.ip}!</title>
+</head>
+
+<body>
+    <p>Wait 3 and 5 seconds for the additional fragments to load asynchronously...</p>
+    <await(ip from data.ip2)>
+        <div>Async fragment 1: ${ip}</div>
+        </await>
+        <await(ip from data.ip3)>
+            <div>Async fragment 2: ${ip}</div>
+            </await>
+
+</body>
+
+</html>
