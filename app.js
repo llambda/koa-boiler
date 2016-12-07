@@ -3,41 +3,29 @@ const Promise = require('bluebird');
 const co = Promise.coroutine;
 const cluster = require('cluster');
 
-// middleware
-const serveStatic = require('koa-static')('public');
-const Conditional = require('koa-conditional-get');
-const BodyParser = require('koa-bodyparser');
-const Compress = require('koa-compress');
-const Morgan = require('koa-morgan');
-const Favicon = require('koa-favicon');
-const session = require('koa-session');
 // const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
 const adapt = require('koa-adapter-bluebird'); // uses bluebird-co for performance
 const helmet = require('koa-helmet');
-const Etag = require('koa-etag');
 
 const Koa = require('koa');
-
 const app = module.exports = new Koa();
 
-const logger = Morgan('combined');
-
-app.use(Favicon(require.resolve('./public/favicon.ico')));
 app.use(require('koa-response-time')());
-app.use(Conditional());
-app.use(Etag());
-app.use(logger);
+app.use(require('koa-favicon')(require.resolve('./public/favicon.ico')));
+app.use(require('koa-conditional-get')());
+app.use(require('koa-etag')());
+app.use(require('koa-morgan')('combined'));
 
-app.use(Compress({
+app.use(require('koa-compress')({
     flush: require('zlib').Z_SYNC_FLUSH
 }));
 app.keys = ['some secret hurr'];
 
-app.use(adapt(session({
+app.use(adapt(require('koa-session')({
     maxAge: 24 * 60 * 60 * 1000 // One Day
 }, app)));
 
-app.use(BodyParser({
+app.use(require('koa-bodyparser')({
     // BodyParser options here
 }));
 
@@ -164,4 +152,4 @@ router.get('/marko', (ctx, next) => {
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(serveStatic);
+app.use(require('koa-static')('public'));
