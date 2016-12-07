@@ -6,7 +6,7 @@ const cluster = require('cluster');
 // middleware
 const serveStatic = require('koa-static')('public');
 const conditional = require('koa-conditional-get');
-const bodyParser = require('koa-bodyparser')();
+const BodyParser = require('koa-bodyparser');
 const Compress = require('koa-compress');
 const Morgan = require('koa-morgan');
 const favicon = require('koa-favicon');
@@ -37,7 +37,9 @@ app.use(adapt(session({
     maxAge: 24 * 60 * 60 * 1000 // One Day
 }, app)));
 
-app.use(adapt(bodyParser));
+app.use(BodyParser({
+    // BodyParser options here
+}));
 
 class NullOrUndefinedError extends Error {
     constructor(message) {
