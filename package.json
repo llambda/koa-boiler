@@ -26,7 +26,7 @@
     "koa-compress": "^2.0.0",
     "koa-conditional-get": "^2.0.0",
     "koa-ejs": "^3.0.0",
-    "koa-etag": "^2.1.1",
+    "koa-etag": "^3.0.0",
     "koa-favicon": "^2.0.0",
     "koa-helmet": "^2.0.0",
     "koa-morgan": "^1.0.1",

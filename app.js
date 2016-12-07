@@ -14,7 +14,7 @@ const session = require('koa-session');
 // const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
 const adapt = require('koa-adapter-bluebird'); // uses bluebird-co for performance
 const helmet = require('koa-helmet');
-const etag = require('koa-etag');
+const Etag = require('koa-etag');
 
 const Koa = require('koa');
 
@@ -25,7 +25,7 @@ const logger = Morgan('combined');
 app.use(Favicon(require.resolve('./public/favicon.ico')));
 app.use(require('koa-response-time')());
 app.use(Conditional());
-app.use(adapt(etag()));
+app.use(Etag());
 app.use(logger);
 
 app.use(Compress({
