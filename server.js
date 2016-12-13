@@ -3,9 +3,9 @@ const cluster = require('cluster');
 console.log('Starting TLS server ' + (cluster.worker ? cluster.worker.id : '') + ' at ' + (new Date).toISOString());
 process.on('exit', () => console.log('Process exit at ' + (new Date).toISOString()));
 
-const Promise = require('bluebird');
 const sticky = require('socketio-sticky-session');
-const pem = Promise.promisifyAll(require('pem'));
+const thenifyAll = require('thenify-all');
+const pem = thenifyAll(require('pem'));
 const app = require('./app');
 const config = require('./config.json');
 const spdy = require('spdy');
@@ -18,8 +18,8 @@ if (process.getuid() === 0) { // if we are root
     var port = 8443;
 }
 
-Promise.coroutine(function*() { // same as an async function; allows use of yield to await promises.
-    const keys = yield pem.createCertificateAsync({
+(async function() { // same as an async function; allows use of yield to await promises.
+    const keys = await pem.createCertificate({
         days: 1,
         selfSigned: true
     }); // generate a cert/keypair on the fly

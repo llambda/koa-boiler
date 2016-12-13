@@ -72,14 +72,6 @@ blob@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.4.tgz#bcf13052ca54463f30f9fc7e95b9a47630a94921"
 
-bluebird-co@^2.1.1:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/bluebird-co/-/bluebird-co-2.2.0.tgz#e0a49e63b6b17e34c91f48b3934b769a377fbed7"
-
-bluebird@^3.1.1, bluebird@^3.4.6:
-  version "3.4.6"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
-
 bowser@^1.0.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.6.0.tgz#37fc387b616cb6aef370dab4d6bd402b74c5c54d"
@@ -507,14 +499,6 @@ keygrip@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/keygrip/-/keygrip-1.0.1.tgz#b02fa4816eef21a8c4b35ca9e52921ffc89a30e9"
 
-koa-adapter-bluebird@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/koa-adapter-bluebird/-/koa-adapter-bluebird-0.0.1.tgz#495094fc71917f1d5ab1928b52b0279b69e17566"
-  dependencies:
-    bluebird "^3.1.1"
-    bluebird-co "^2.1.1"
-    is-generator-function "^1.0.3"
-
 koa-adapter@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/koa-adapter/-/koa-adapter-0.0.3.tgz#c2a3a4179f420185afa3c7978adc495073566f6e"
@@ -848,6 +832,10 @@ process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
 
+promise-delay@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/promise-delay/-/promise-delay-2.1.0.tgz#823f4a5189a996ce574be9111bd6551457cdf035"
+
 property-handlers@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/property-handlers/-/property-handlers-1.1.1.tgz#cb20d322aab7d94fffac28f46c9186bd5947b4b4"
@@ -1059,7 +1047,7 @@ strip-json-comments@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-thenify-all@^1.0.0:
+thenify-all@^1.0.0, thenify-all@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
   dependencies:
