@@ -94,8 +94,8 @@ router.get('/', (ctx, next) => {
 </head>
 
 <body>
-    <script src='aphrodite.umd.js'></script>
-    <script src='styles.js'></script>
+    <script src='/public/aphrodite.umd.js'></script>
+    <script src='/public/styles.js'></script>
     <p>Hello ${ctx.ip} from worker ${workerId}!
     <script>        
     document.currentScript.parentElement.className = aphrodite.css(Styles.hover);
@@ -197,7 +197,8 @@ router.get('/myipes6', async (ctx, next) => {
 });
 
 
+const mount = require('koa-mount');
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(require('koa-static')('public'));
+app.use(mount('/public', require('koa-static')('public')));
