@@ -19,3 +19,5 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 * [Marko](http://markojs.com/) templates (featuring async and streaming support)
 * [html-template-tag](https://github.com/AntonioVdlC/html-template-tag) ES6 Tagged Template for compiling HTML template strings.
 * [Aphrodite](https://github.com/Khan/aphrodite) support for colocating your styles with your JavaScript component.
+
+There is also an [async/await branch](https://github.com/llambda/koa-boiler/tree/asyncawait).
