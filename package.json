@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/llambda/koaboiler#readme",
   "dependencies": {
+    "aphrodite": "^1.1.0",
     "bluebird": "^3.4.6",
     "html-template-tag": "^1.0.0",
     "koa": "^2.0.0-alpha.7",
