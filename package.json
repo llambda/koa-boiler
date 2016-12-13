@@ -19,6 +19,7 @@
   "homepage": "https://github.com/llambda/koaboiler#readme",
   "dependencies": {
     "bluebird": "^3.4.6",
+    "html-template-tag": "^1.0.0",
     "koa": "^2.0.0-alpha.7",
     "koa-adapter": "0.0.3",
     "koa-adapter-bluebird": "0.0.1",
