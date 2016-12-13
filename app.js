@@ -11,6 +11,7 @@ const Koa = require('koa');
 const app = module.exports = new Koa();
 
 const html = require('html-template-tag');
+const { StyleSheet, css } = require('aphrodite');
 
 app.use(require('koa-response-time')());
 app.use(require('koa-favicon')(require.resolve('./public/favicon.ico')));
@@ -93,10 +94,39 @@ router.get('/', (ctx, next) => {
 <html>
 <head>
     <title>Hello from worker ${workerId}!</title>
+    <script src='aphrodite.umd.js'>
+    <script>
+
+</script>
 </head>
 
 <body>
-    <p>Hello ${ctx.ip} from worker ${workerId}!</p>
+    <p>Hello ${ctx.ip} from worker ${workerId}!
+    <script>    
+    var styles = aphrodite.StyleSheet.create({
+        red: {
+            backgroundColor: 'red'
+        },
+
+        blue: {
+            backgroundColor: 'blue'
+        },
+
+        hover: {
+            ':hover': {
+                backgroundColor: 'red'
+            }
+        },
+
+        small: {
+            '@media (max-width: 600px)': {
+                backgroundColor: 'red',
+            }
+        }
+    });
+    document.currentScript.parentElement.className = aphrodite.css(styles.hover);
+    </script>
+    </p>
     <p>If using Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a></p>
     <div>Node versions:
     <pre>${JSON.stringify(process.versions, null, 4)}</pre>
