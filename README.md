@@ -2,16 +2,16 @@
 Koa "boilerplate" for a production ready app, demonstrating the following features:
 
 * [Socket.io](http://socket.io/)
-* Multi-process clustering
 * IP pinning, via [socketio-sticky-session](https://github.com/wzrdtales/socket-io-sticky-session) (supports reverse proxies)
+* Multi-process clustering
 * ETags and conditional get
 * Gzip compression
 * Signed, cookie-based sessions
 * Request logging (morgan)
 * Static file serving
 * Favicon middleware
-* HTTP/2 and SPDY over TLS
-* Dropping root privileges after acquiring port
+* HTTP/2 (with TLS and on-the-fly certificate generation)
+* Drop root privileges after acquiring port
 * Routing
 * Example async route
 * Both old Koa 1.0 and new 2.0 style middleware. [koa-adapter](https://github.com/th507/koa-adapter) / [koa-adapter-bluebird](https://www.npmjs.com/package/koa-adapter-bluebird) to convert old 1.0 middleware to 2.0.
