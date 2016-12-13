@@ -94,37 +94,14 @@ router.get('/', (ctx, next) => {
 <html>
 <head>
     <title>Hello from worker ${workerId}!</title>
-    <script src='aphrodite.umd.js'>
-    <script>
-
-</script>
 </head>
 
 <body>
+    <script src='aphrodite.umd.js'></script>
+    <script src='styles.js'></script>
     <p>Hello ${ctx.ip} from worker ${workerId}!
-    <script>    
-    var styles = aphrodite.StyleSheet.create({
-        red: {
-            backgroundColor: 'red'
-        },
-
-        blue: {
-            backgroundColor: 'blue'
-        },
-
-        hover: {
-            ':hover': {
-                backgroundColor: 'red'
-            }
-        },
-
-        small: {
-            '@media (max-width: 600px)': {
-                backgroundColor: 'red',
-            }
-        }
-    });
-    document.currentScript.parentElement.className = aphrodite.css(styles.hover);
+    <script>        
+    document.currentScript.parentElement.className = aphrodite.css(Styles.hover);
     </script>
     </p>
     <p>If using Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a></p>
