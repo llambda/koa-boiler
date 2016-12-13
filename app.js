@@ -10,7 +10,7 @@ const helmet = require('koa-helmet');
 const Koa = require('koa');
 const app = module.exports = new Koa();
 
-const html = require('./html');
+const html = require('html-template-tag');
 
 app.use(require('koa-response-time')());
 app.use(require('koa-favicon')(require.resolve('./public/favicon.ico')));
@@ -92,16 +92,15 @@ router.get('/', (ctx, next) => {
     ctx.body = html`<!DOCTYPE html>
 <html>
 <head>
-    <title>Hello from worker $${workerId}!</title>
+    <title>Hello from worker ${workerId}!</title>
 </head>
 
 <body>
-    <p>Hello $${ctx.ip} from worker $${workerId}!</p>
+    <p>Hello ${ctx.ip} from worker ${workerId}!</p>
     <p>If using Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a></p>
     <div>Node versions:
-    <pre>$${JSON.stringify(process.versions, null, 4)}</pre>
+    <pre>${JSON.stringify(process.versions, null, 4)}</pre>
     </div>   
-    $${script}
     ${script}
     <div>
         <a href="/api/example">3 second async delayed load example</a><br>
@@ -183,7 +182,7 @@ const marko = require('marko');
 // ES6 template
 router.get('/myipes6', (ctx, next) => co(function *() {
         ctx.state.ip = ctx.ip;        
-        ctx.body = `<!DOCTYPE html>
+        ctx.body = html`<!DOCTYPE html>
 <html>
 
 <head>

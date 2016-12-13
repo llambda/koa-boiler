@@ -393,6 +393,16 @@ hsts@1.0.0:
   dependencies:
     core-util-is "1.0.2"
 
+html-es6cape@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/html-es6cape/-/html-es6cape-1.0.5.tgz#f3a437883b0594a01b175a6a2833090920b37d85"
+
+html-template-tag@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/html-template-tag/-/html-template-tag-1.0.0.tgz#22937162e17549af11a159d31dcf4f4a6805774b"
+  dependencies:
+    html-es6cape "^1.0.5"
+
 htmljs-parser@^1.5.3:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/htmljs-parser/-/htmljs-parser-1.6.0.tgz#f19632204d62ec1e447790974f28297fdf96ab04"
