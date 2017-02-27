@@ -3,23 +3,27 @@ const cluster = require('cluster');
 console.log('Starting TLS server ' + (cluster.worker ? cluster.worker.id : '') + ' at ' + (new Date).toISOString());
 process.on('exit', () => console.log('Process exit at ' + (new Date).toISOString()));
 
-const Promise = require('bluebird');
 const sticky = require('socketio-sticky-session');
-const pem = Promise.promisifyAll(require('pem'));
+const thenifyAll = require('thenify-all');
+const pem = thenifyAll(require('pem'));
 const app = require('./app');
 const config = require('./config.json');
 const spdy = require('spdy');
 const socketIo = require('socket.io')
 const os = require('os');
 
-if (process.getuid() === 0) { // if we are root
-    var port = 443;
+var port;
+
+if (process.getuid && process.getuid() === 0) { // if we are root
+    port = 443;
+} else if (!process.getui) { // Windows
+    port = 443;
 } else { // we are not root, can only use sockets >1024
-    var port = 8443;
+    port = 8443;
 }
 
-Promise.coroutine(function*() { // same as an async function; allows use of yield to await promises.
-    const keys = yield pem.createCertificateAsync({
+(async function() { // same as an async function; allows use of yield to await promises.
+    const keys = await pem.createCertificate({
         days: 1,
         selfSigned: true
     }); // generate a cert/keypair on the fly
@@ -54,14 +58,15 @@ Promise.coroutine(function*() { // same as an async function; allows use of yiel
         });
     }
 
-    if (process.getuid() === 0) { // if we are root
-        // we have opened the sockets, now drop our root privileges
+    if (process.setgid && process.setuid) {
+         // we have opened the sockets, now drop our root privileges
         process.setgid('nobody');
         process.setuid('nobody');
+    }
+
+    if (process.setegid && process.seteuid) {
         // Newer node versions allow you to set the effective uid/gid
-        if (process.setegid) {
-            process.setegid('nobody');
-            process.seteuid('nobody');
-        }
+        process.setegid('nobody');
+        process.seteuid('nobody');
     }
 })();
