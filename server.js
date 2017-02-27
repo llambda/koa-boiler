@@ -12,10 +12,14 @@ const spdy = require('spdy');
 const socketIo = require('socket.io')
 const os = require('os');
 
-if (process.getuid() === 0) { // if we are root
-    var port = 443;
+var port;
+
+if (process.getuid && process.getuid() === 0) { // if we are root
+    port = 443;
+} else if (!process.getui) { // Windows
+    port = 443;
 } else { // we are not root, can only use sockets >1024
-    var port = 8443;
+    port = 8443;
 }
 
 (async function() { // same as an async function; allows use of yield to await promises.
@@ -54,14 +58,15 @@ if (process.getuid() === 0) { // if we are root
         });
     }
 
-    if (process.getuid() === 0) { // if we are root
-        // we have opened the sockets, now drop our root privileges
+    if (process.setgid && process.setuid) {
+         // we have opened the sockets, now drop our root privileges
         process.setgid('nobody');
         process.setuid('nobody');
+    }
+
+    if (process.setegid && process.seteuid) {
         // Newer node versions allow you to set the effective uid/gid
-        if (process.setegid) {
-            process.setegid('nobody');
-            process.seteuid('nobody');
-        }
+        process.setegid('nobody');
+        process.seteuid('nobody');
     }
 })();
