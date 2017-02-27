@@ -20,7 +20,7 @@
   "dependencies": {
     "aphrodite": "^1.1.0",
     "html-template-tag": "^1.0.0",
-    "koa": "^2.0.0-alpha.7",
+    "koa": "^2.0.1",
     "koa-adapter": "0.0.3",
     "koa-bodyparser": "^3.2.0",
     "koa-compress": "^2.0.0",
