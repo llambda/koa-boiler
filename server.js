@@ -16,7 +16,7 @@ var port;
 
 if (process.getuid && process.getuid() === 0) { // if we are root
     port = 443;
-} else if (!process.getui) { // Windows
+} else if (!process.getuid) { // Windows
     port = 443;
 } else { // we are not root, can only use sockets >1024
     port = 8443;
