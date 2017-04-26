@@ -18,4 +18,4 @@ Koa "boilerplate" for a production ready app, demonstrating the following featur
 * [ejs](https://github.com/koajs/ejs) templates
 * [Marko](http://markojs.com/) templates (featuring async and streaming support)
 * [html-template-tag](https://github.com/AntonioVdlC/html-template-tag) ES6 Tagged Template for compiling HTML template strings.
-* [Aphrodite](https://github.com/Khan/aphrodite) support for colocating your styles with your JavaScript component.
+* [Aphrodite](https://github.com/Khan/aphrodite) support for colocating your styles with your JavaScript component. Note: [Styletron](https://github.com/rtsao/styletron) is probably a better choice, I just haven't had time to add it here yet
