@@ -1,11 +1,7 @@
 'use strict';
 const cluster = require('cluster');
-
-const adapt = require('koa-adapter'); // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
 const helmet = require('koa-helmet');
-
 const promiseDelay = require('promise-delay');
-
 const Koa = require('koa');
 const app = module.exports = new Koa();
 
@@ -23,9 +19,9 @@ app.use(require('koa-compress')({
 }));
 app.keys = ['some secret hurr'];
 
-app.use(adapt(require('koa-session')({
+app.use(require('koa-session')({
     maxAge: 24 * 60 * 60 * 1000 // One Day
-}, app)));
+}, app));
 
 app.use(require('koa-bodyparser')({
     // BodyParser options here

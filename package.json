@@ -21,7 +21,6 @@
     "aphrodite": "^1.2.3",
     "html-template-tag": "^1.0.0",
     "koa": "^2.3.0",
-    "koa-adapter": "0.0.3",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
     "koa-conditional-get": "^2.0.0",
