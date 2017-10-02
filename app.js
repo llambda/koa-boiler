@@ -81,7 +81,9 @@ class NullOrUndefinedError extends Error {
     })
 })();
 
-const router = require('koa-router')();
+const TrieRouter = require('koa-trie-router');
+
+const router = new TrieRouter();
 
 router.get('/', (ctx, next) => {
     ctx.status = 200;
@@ -97,14 +99,14 @@ router.get('/', (ctx, next) => {
     <script src='/public/aphrodite.umd.js'></script>
     <script src='/public/styles.js'></script>
     <p>Hello ${ctx.ip} from worker ${workerId}!
-    <script>        
+    <script>
     document.currentScript.parentElement.className = aphrodite.css(Styles.hover);
     </script>
     </p>
     <p>If using Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a></p>
     <div>Node versions:
     <pre>${JSON.stringify(process.versions, null, 4)}</pre>
-    </div>   
+    </div>
     ${script}
     <div>
         <a href="/api/example">3 second async delayed load example</a><br>
@@ -113,7 +115,7 @@ router.get('/', (ctx, next) => {
         <a href="/myip">ejs rendering</a><br>
         <a href="/marko">marko async rendering</a><br>
         <a href="/myipes6">es6 template string rendering</a><br>
-    </div>     
+    </div>
 </body>
 </html>`;
 });
@@ -199,6 +201,5 @@ router.get('/myipes6', async (ctx, next) => {
 
 const mount = require('koa-mount');
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+app.use(router.middleware());
 app.use(mount('/public', require('koa-static')('public')));
