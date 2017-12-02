@@ -32,6 +32,7 @@ if (process.getuid && process.getuid() === 0) {
 }
 
 ;(async () => {
+  // For windows, we need to bring our own openssl.
   if (os.platform() === 'win32') {
     process.env.OPENSSL_CONF = path.join(__dirname, 'openssl', 'windows', 'openssl.cnf')
     pem.config({
@@ -64,7 +65,7 @@ if (process.getuid && process.getuid() === 0) {
     sticky(
       {
         // https://github.com/wzrdtales/socket-io-sticky-session
-        num: os.cpus(), // process count
+        num: os.cpus().length, // process count
         proxy: false, // if the layer 4 patching should be used or not, needed if behind a proxy.
       },
       getServer,
