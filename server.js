@@ -18,7 +18,7 @@ const spdy = require('spdy')
 const socketIo = require('socket.io')
 const os = require('os')
 
-var port
+let port
 
 if (process.getuid && process.getuid() === 0) {
   // if we are root
