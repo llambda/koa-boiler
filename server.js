@@ -1,37 +1,30 @@
-const cluster = require('cluster')
+const os = require('os')
 const path = require('path')
-console.log(
-  'Starting TLS server ' +
-    (cluster.worker ? cluster.worker.id : '') +
-    ' at ' +
-    new Date().toLocaleString(),
-)
-process.on('exit', () => console.log('Process exit at ' + new Date().toLocaleString()))
-
-const sticky = require('socketio-sticky-session')
-const thenifyAll = require('thenify-all')
-const pem = thenifyAll(require('pem'))
-const app = require('./app')
-const config = require('./config.json')
+const cluster = require('cluster')
 const spdy = require('spdy')
 const socketIo = require('socket.io')
-const os = require('os')
+const sticky = require('socketio-sticky-session')
+const thenifyAll = require('thenify-all')
 
-let port
+const app = require('./app')
+const config = require('./config.json')
 
-if (process.getuid && process.getuid() === 0) {
-  // if we are root
-  port = 443
-} else if (!process.getuid) {
-  // Windows
-  port = 443
-} else {
-  // we are not root, can only use sockets >1024
-  port = 8443
-}
+const pem = thenifyAll(require('pem'))
 
+console.log(
+  'Starting TLS server ' +
+    (cluster.worker ? cluster.worker.id : ' ') +
+    'at ' +
+    new Date().toLocaleString(),
+)
+process.on('exit', () => console.log('Process exited at ' + new Date().toLocaleString()))
+
+// if we're root or on windows, use 443, else 8443
+const port = !process.getuid || process.getuid() === 0 ? 443 : 8443
+
+// now create all the servers
 ;(async () => {
-  // For windows, we need to bring our own openssl.
+  // For windows, we need to bring our own openssl
   if (os.platform() === 'win32') {
     process.env.OPENSSL_CONF = path.join(__dirname, 'openssl', 'windows', 'openssl.cnf')
     pem.config({
@@ -54,7 +47,7 @@ if (process.getuid && process.getuid() === 0) {
 
     io.on('connection', socket => {
       // TODO: do stuff with socket
-      console.log('Socket ' + socket.id + ' connected.')
+      console.log(`Socket ${socket.id} connected (${io.engine.clientsCount} total).`)
     })
 
     return server
