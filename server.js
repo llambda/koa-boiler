@@ -13,8 +13,8 @@ const pem = thenifyAll(require('pem'))
 
 console.log(
   'Starting TLS server ' +
-    (cluster.worker ? cluster.worker.id : ' ') +
-    'at ' +
+    (cluster.worker ? cluster.worker.id : '') +
+    ' at ' +
     new Date().toLocaleString(),
 )
 process.on('exit', () => console.log('Process exited at ' + new Date().toLocaleString()))
