@@ -7,7 +7,7 @@ console.log(
     ' at ' +
     new Date().toLocaleString(),
 )
-process.on('exit', () => console.log('Process exit at ' + new Date().toDateString()))
+process.on('exit', () => console.log('Process exit at ' + new Date().toLocaleString()))
 
 const sticky = require('socketio-sticky-session')
 const thenifyAll = require('thenify-all')
