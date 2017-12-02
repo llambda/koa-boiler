@@ -49,7 +49,7 @@ if (process.getuid && process.getuid() === 0) {
   }
 
   function getServer() {
-    let server = spdy.createServer(credentials, app.callback())
+    const server = spdy.createServer(credentials, app.callback())
     const io = socketIo.listen(server)
 
     io.on('connection', socket => {
