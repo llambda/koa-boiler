@@ -28,7 +28,7 @@ const port = !process.getuid || process.getuid() === 0 ? 443 : 8443
   if (os.platform() === 'win32') {
     process.env.OPENSSL_CONF = path.join(__dirname, 'openssl', 'windows', 'openssl.cnf')
     pem.config({
-      pathOpenSSL: 'openssl.exe',
+      pathOpenSSL: path.join(__dirname, 'openssl', 'windows', 'openssl.exe'),
     })
   }
   const keys = await pem.createCertificate({
