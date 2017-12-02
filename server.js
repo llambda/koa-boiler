@@ -1,4 +1,3 @@
-'use strict'
 const cluster = require('cluster')
 const path = require('path')
 console.log(
